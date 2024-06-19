@@ -1,16 +1,39 @@
-# This is a sample Python script.
+ODD = "odd"
+EVEN = "even"
+PRIME = "prime"
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def filter_numbers(numbers, operation):
+    """
+    функция, которая на вход принимает список из целых чисел,
+    и возвращает только чётные/нечётные/простые числа
+    (выбор производится передачей дополнительного аргумента)
+
+    >>> filter_numbers([1, 2, 3], ODD)
+    <<< [1, 3]
+    >>> filter_numbers([2, 3, 4, 5], EVEN)
+    <<< [2, 4]
+    """
+
+    def is_prime(x):
+        for i in range(2, (x // 2) + 1):
+            if x % i == 0:
+                return False
+        return True
+
+    if operation == EVEN:
+        return (list(number for number in numbers if number % 2 == 0))
+    if operation == ODD:
+        return (list(number for number in numbers if number % 2 > 0))
+    if operation == PRIME:
+        return (list(number for number in numbers if is_prime(number)))
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
+print (25 if 2 == 1 else 24)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+print(filter_numbers([1, 2, 3], ODD))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(filter_numbers([2, 3, 4, 5], EVEN))
+
+print(filter_numbers([2, 3, 4, 5], PRIME))
+
