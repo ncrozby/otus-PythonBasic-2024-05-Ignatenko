@@ -15,13 +15,10 @@ def power_numbers(*args):
     return list(map(lambda arg: arg ** 2, args))
 
 
-#    return [number ** 2 for number in args]
-
 # filter types
 ODD = "odd"
 EVEN = "even"
 PRIME = "prime"
-
 
 def is_prime(numb):
     if numb < 2:
@@ -31,6 +28,13 @@ def is_prime(numb):
             return False
     return True
 
+def is_odd (numb):
+    return True if numb % 2 > 0 else False
+
+def is_even (numb):
+    return True if numb % 2 == 0 else False
+
+funcs = {ODD: is_odd, EVEN: is_even, PRIME: is_prime}
 
 def filter_numbers(numbers, operation):
     """
@@ -46,9 +50,5 @@ def filter_numbers(numbers, operation):
     [2, 3, 5, 7, 11]
     """
 
-    if operation == EVEN:
-        return list(filter(lambda numb: numb % 2 == 0, numbers))
-    elif operation == ODD:
-        return list(filter(lambda numb: numb % 2 > 0, numbers))
-    elif operation == PRIME:
-        return list(filter(is_prime, numbers))
+    return list(filter(funcs[operation], numbers))
+
